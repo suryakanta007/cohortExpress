@@ -29,8 +29,6 @@ class CohortExpress {
     }
 
 
-
-
     constructor(){
       this.#server =http.createServer(this.reqHandeler.bind(this));
     }
@@ -41,13 +39,32 @@ class CohortExpress {
         this.#server.listen(port,host,cb);
     }
     reqHandeler(req,res){
+        res.setHeader("Content-Type", "application/json")
         const method = req.method.toLowerCase();
         console.log(method)
         const parsedUrl = url.parse(req.url,true);
+        console.log(parsedUrl);
         const route = parsedUrl.pathname;
 
         if(!this.Routes[method]){
             return res.end("Invalid method.");
+        }
+        // Agar request type post hogaa tho meh body add kardungaa req object meh
+        console.log(this.Routes[method])
+        if(method==="post"){
+            let dataBody = ""
+            req.on("data",(chunks)=>{
+                dataBody = dataBody + chunks.toString();
+            })
+
+            req.on("end",()=>{
+                try {
+                    req.chaiBody = JSON.parse(dataBody); 
+                } catch (error) {
+                    console.log(error);
+                }
+            })
+            
         }
         if(!this.Routes[method][route]){
             return res.end(`${this.Routes[method][route] } not found`);

@@ -1,6 +1,6 @@
 # CohortExpress
 
-CohortExpress is a simple, lightweight, custom-built HTTP server inspired by Express.js. It provides basic routing capabilities to handle HTTP requests.
+CohortExpress is a simple, lightweight, custom-built HTTP server inspired by Express.js. It provides basic routing capabilities to handle HTTP requests. Directed by piyush sir.
 
 ## Features
 - Support for HTTP Methods: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`

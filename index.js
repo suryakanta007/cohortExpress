@@ -7,7 +7,8 @@ app.get("/",(req,res)=>{
     res.end("Hello ...")
 })
 
-app.post("/",(req,res)=>{
+app.post("/login",(req,res)=>{
+    console.log(req.chaiBody);
     res.end("Post is also is working..")
 })
 
